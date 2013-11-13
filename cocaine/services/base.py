@@ -252,7 +252,7 @@ class AbstractService(object):
                     if msg is None:
                         continue
                     if msg.id == RPC.CHUNK:
-                        yield msgpack.loads(msg.data)
+                        yield msg.data
                     elif msg.id == RPC.CHOKE:
                         raise error or StopIteration
                     elif msg.id == RPC.ERROR:
