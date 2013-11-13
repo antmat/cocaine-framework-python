@@ -183,7 +183,7 @@ class AbstractService(object):
 
         deferred = self._sessions[message.session]
         if message.id == RPC.CHUNK:
-            chunk = msgpack.loads(message.data)
+            chunk = message.data
             deferred.trigger(chunk)
         elif message.id == RPC.ERROR:
             deferred.error(ServiceError(message.errno, message.reason))
@@ -210,7 +210,7 @@ class AbstractService(object):
         if deferred is None:
             deferred = CocaineDeferred()
             self._sessions[session] = deferred
-        self._writableStream.write(msgpack.dumps(data))
+        self._writableStream.write(data)
         return deferred
 
     def _invoke_sync(self, method, *args, **kwargs):
