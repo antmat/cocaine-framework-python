@@ -61,7 +61,7 @@ PROTOCOL = {
     RPC.ERROR: {
         'id': RPC.ERROR,
         'alias': 'Error',
-        'tuple_type': ('errno', 'reason')
+        'tuple_type': ('category', 'reason')
     },
     RPC.CHOKE: {
         'id': RPC.CHOKE,

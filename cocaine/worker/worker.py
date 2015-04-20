@@ -247,8 +247,8 @@ class Worker(object):
     def send_chunk(self, session, data):
         self.pipe.write(Message(RPC.CHUNK, session, data).pack())
 
-    def send_error(self, session, code, msg):
-        self.pipe.write(Message(RPC.ERROR, session, code, msg).pack())
+    def send_error(self, session, category, code, msg):
+        self.pipe.write(Message(RPC.ERROR, session, (category, code), msg).pack())
 
     def _stop(self):
         self.threaded_disown_timer.stop()

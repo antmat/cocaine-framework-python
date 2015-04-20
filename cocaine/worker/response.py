@@ -22,6 +22,7 @@
 import traceback
 
 from ..common import CocaineErrno
+from ..common import ErrorCategory
 from ..detail.util import msgpack_packb
 
 
@@ -59,7 +60,7 @@ class ResponseStream(object):
     def error(self, code, message):
         if self._m_state is not None:
             try:
-                self.worker.send_error(self.session, code, message)
+                self.worker.send_error(self.session, ErrorCategory.CFRAMEWORKCATEGORY, code, message)
             finally:
                 self.close()
 
